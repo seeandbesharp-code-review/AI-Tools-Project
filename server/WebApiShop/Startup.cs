@@ -132,7 +132,7 @@ namespace WebApiShop
                     ValidateAudience = !string.IsNullOrEmpty(jwtAudience),
                     ValidAudience = jwtAudience,
                     ValidateLifetime = true,
-                    ClockSkew = TimeSpan.FromMinutes(2)
+                    ClockSkew = TimeSpan.FromMinutes(5)
                 };
                 options.Events = new JwtBearerEvents
                 {
@@ -150,7 +150,7 @@ namespace WebApiShop
                 options.AddSlidingWindowLimiter("MySlidingPolicy", opt =>
                 {
                     opt.PermitLimit = 10;
-                    opt.Window = TimeSpan.FromMinutes(1);
+                    opt.Window = TimeSpan.FromMinutes(5);
                     opt.SegmentsPerWindow = 3;
                     opt.QueueLimit = 2;
                     opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
