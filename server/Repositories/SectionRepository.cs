@@ -17,7 +17,7 @@ namespace Repositories
         }
         public async Task<List<Section>> getSectionsByShowId(int showId)
         {
-            return await _context.Sections.Where(s => s.ShowId == showId).ToListAsync();
+            return await _context.Sections.Where(s => s.ShowId == showId).Take(100).ToListAsync();
         }
         public async Task<Section> addSection(Section section)
         {

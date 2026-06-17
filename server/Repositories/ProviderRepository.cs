@@ -22,7 +22,7 @@ namespace Repositories
 
         public async Task<List<Provider>> getAllProviders()
         {
-            return await _context.Providers.ToListAsync();
+            return await _context.Providers.Take(100).ToListAsync();
         }
 
         public async Task<Provider> addProvider(Provider provider)

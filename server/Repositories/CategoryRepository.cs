@@ -18,7 +18,7 @@ namespace Repositories
         }
         public async Task<List<Category>> getAllCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.Take(100).ToListAsync();
         }
         public async Task<Category> getCategoryById(int id)
         {

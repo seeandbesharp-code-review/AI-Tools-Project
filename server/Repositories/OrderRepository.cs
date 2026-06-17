@@ -15,7 +15,7 @@ namespace Repositories
         public async Task<List<Order>> getAllOrders()
         {
             return await _context.Orders.Include(i => i.User)
-                .Include(c => c.OrderedSeats).ToListAsync();
+                .Include(c => c.OrderedSeats).Take(100).ToListAsync();
         }
         public async Task<List<Order>> getOrdersForUser(int userId)
         {
@@ -23,7 +23,7 @@ namespace Repositories
                 .Include(i => i.User)
                 .Include(c => c.OrderedSeats)
                 .Include(c => c.OrderedSeats).ThenInclude(s => s.Section)
-                .Where(u => u.UserId == userId).ToListAsync();
+                .Where(u => u.UserId == userId).Take(100).ToListAsync();
         }
 
         public async Task<Order> getOrderById(int id)
@@ -119,7 +119,7 @@ namespace Repositories
                 .Include(s=>s.Show)
                 .Include(s=>s.Section)
                 .Include(s => s.Order)
-                .ThenInclude(u=>u.User).Where(s => s.ShowId == showId).ToListAsync();
+                .ThenInclude(u=>u.User).Where(s => s.ShowId == showId).Take(100).ToListAsync();
         }
 
         public async Task<List<OrderedSeat>> getOrderedSeatsByUserId(int userId)
@@ -128,7 +128,7 @@ namespace Repositories
                 .Include(s => s.Show)
                 .Include(s => s.Section)
                 .Include(s => s.Order)
-                .Where(s=>s.Order.UserId == userId).ToListAsync();
+                .Where(s=>s.Order.UserId == userId).Take(100).ToListAsync();
 
         }
     }

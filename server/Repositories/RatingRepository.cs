@@ -23,7 +23,7 @@ namespace Repositories
 
         public async Task<List<Rating>> GetAllRatings()
         {
-            return await _showsCenterContext.Ratings.ToListAsync();
+            return await _showsCenterContext.Ratings.Take(100).ToListAsync();
         }
     }
 }
