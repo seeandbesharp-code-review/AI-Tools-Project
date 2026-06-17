@@ -150,7 +150,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = !string.IsNullOrEmpty(jwtAudience),
         ValidAudience = jwtAudience,
         ValidateLifetime = true,
-        ClockSkew = TimeSpan.FromMinutes(2)
+        ClockSkew = TimeSpan.FromMinutes(5)
     };
 
     options.Events = new JwtBearerEvents
@@ -174,7 +174,7 @@ builder.Services.AddRateLimiter(options =>
     options.AddSlidingWindowLimiter("MySlidingPolicy", opt =>
     {
         opt.PermitLimit = 10; // מקסימום 10 בקשות
-        opt.Window = TimeSpan.FromMinutes(1); // בתוך חלון זמן של דקה אחת
+        opt.Window = TimeSpan.FromMinutes(5); // בתוך חלון זמן של דקה אחת
         opt.SegmentsPerWindow = 3; // חלוקת הדקה ל-3 מקטעים (כלומר, בדיקה דינמית כל 20 שניות)
         opt.QueueLimit = 2; // כמה בקשות יכולות להמתין בתור אם עברנו את המכסה (0 אומר לחסום מיד)
         opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
